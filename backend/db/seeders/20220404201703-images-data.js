@@ -23,7 +23,7 @@ module.exports = {
     },
     { 
       userId: "2",
-      imageUrl: "https://jw-webmagazine.com/wp-content/uploads/2020/03/Kimetsu-no-YaibaDemon-Slayer.jpg",
+      imageUrl: "http://m.gettywallpapers.com/wp-content/uploads/2021/01/Cool-Anime-Wallpaper.jpg",
       albumId: "2",
       content: "Deku",
     },
