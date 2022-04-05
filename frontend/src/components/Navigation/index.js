@@ -13,8 +13,12 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <>
-        <ProfileButton user={sessionUser} />
-        <CreateImgModal user={sessionUser} />
+        <div>
+          <CreateImgModal user={sessionUser} />
+        </div>
+        <div>
+          <ProfileButton user={sessionUser} />
+        </div>
       </>
     );
   } else {
@@ -30,6 +34,8 @@ function Navigation({ isLoaded }){
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
+      </li>
+      <li>
         {isLoaded && sessionLinks}
       </li>
     </ul>

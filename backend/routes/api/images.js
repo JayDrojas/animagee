@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
-const { setTokenCookie } = require('../../utils/auth');
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Image } = db;
 
 const productNotFoundError = (id) => {
@@ -55,7 +55,7 @@ router.put('/:id(\\d+)', asyncHandler(async ( req, res ) => {
   res.json({ image })
 }))
 
-router.post('/', asyncHandler(async ( req, res ) => {
+router.post('/', requireAuth, asyncHandler(async ( req, res ) => {
   let { content, imageUrl, userId, albumId } = req.body;
   if(!albumId) albumId = null;
   console.log({userId})

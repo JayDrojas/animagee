@@ -3,3 +3,16 @@ img {
     max-width: 300px;
     max-height: 300px;
 }
+
+.image-detail {
+    border: solid 1px black;
+    margin: 0px;
+    padding: 1px
+}
+
+.images {
+    display: flex;
+    flex-flow: wrap;
+    max-width: 100%;
+}
+

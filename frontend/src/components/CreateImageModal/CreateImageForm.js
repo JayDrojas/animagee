@@ -17,12 +17,14 @@ function CreateImageForm({ hideModal }) {
             setErrors([]);
             await dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
             hideModal();
-        }
-        return setErrors(['Make sure content and image url is filled in.'])
+         } else {
+             return setErrors(['Make sure content and image url is filled in.'])
+         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            <h3>Create Image Post</h3>
             <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>

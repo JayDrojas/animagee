@@ -16,12 +16,14 @@ function CreateImageForm({ hideModal, image, user }) {
             setErrors([]);
             await dispatch(editImage({ content, imageUrl, userId: user.id, id: image.id }))
             hideModal();
+        } else {
+            return setErrors(['Make sure content and image url is filled in.'])
         }
-        return setErrors(['Make sure content and image url is filled in.'])
     };
 
     return (
         <form onSubmit={handleSubmit}>
+            <h3>Update Image Post</h3>
             <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
@@ -45,7 +47,7 @@ function CreateImageForm({ hideModal, image, user }) {
                     required
                 />
             </label>
-            <button type="submit">Post Image</button>
+            <button type="submit">Update Image</button>
         </form>
     );
 }
