@@ -8,7 +8,7 @@ const Images = () => {
     const images = useSelector((state) => {
         return Object.values(state.image)
     });
-    
+
     useEffect(() => {
         dispatch(getAllImages());
     }, [dispatch]);
@@ -16,13 +16,9 @@ const Images = () => {
     return (
         <div>
             <div className='images'>
-                <ul id='ul-images'>
-                    {images?.map(({ id, imageUrl, content }) => (
-                        <li id='li-images' key={id}>
-                            <ImageDetail id={id} imageUrl={imageUrl} content={content} />
-                        </li>
-                    ))}
-                </ul>
+                {images?.map(({ id, imageUrl, content, userId }) => (
+                    <ImageDetail key={id} id={id} imageUrl={imageUrl} content={content} userId={userId}/>
+                ))}
             </div>
         </div>
     );

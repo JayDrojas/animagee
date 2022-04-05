@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { createOneImage } from '../../store/images'
-import './CreateImgForm.css';
+import { useDispatch } from "react-redux";
+import { editImage } from '../../store/images'
 
-function CreateImageForm({ hideModal }) {
+function CreateImageForm({ hideModal, image, user }) {
     const dispatch = useDispatch(); 
-    const sessionUser = useSelector((state) => state.session.user);
-    const [content, setContent] = useState("");
-    const [imageUrl, setImgUrl] = useState("");
+    // const sessionUser = useSelector((state) => state.session.user);
+    const [content, setContent] = useState(image.content);
+    const [imageUrl, setImgUrl] = useState(image.imageUrl);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async(e) => {
@@ -15,7 +14,7 @@ function CreateImageForm({ hideModal }) {
 
         if(content && imageUrl) {
             setErrors([]);
-            await dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
+            await dispatch(editImage({ content, imageUrl, userId: user.id, id: image.id }))
             hideModal();
         }
         return setErrors(['Make sure content and image url is filled in.'])

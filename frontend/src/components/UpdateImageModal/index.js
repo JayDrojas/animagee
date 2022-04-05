@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
-import CreateImageForm from "./CreateImageForm";
+import UpdateImageForm from './UpdateImageForm';
 
-function CreateImgModal() {
+function UpdateImageModal({user, image}) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-          <button onClick={() => setShowModal(true)}>Create Image</button>
+          <button onClick={() => setShowModal(true)}>Update Image</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <CreateImageForm hideModal={() => setShowModal(false)} />
+              <UpdateImageForm image={image} user={user} hideModal={() => setShowModal(false)} />
             </Modal>
           )}
         </>
       );
     }
 
-export default CreateImgModal;
+export default UpdateImageModal;

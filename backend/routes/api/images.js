@@ -46,6 +46,14 @@ router.get(
     }
   })
 );
+router.put('/:id(\\d+)', asyncHandler(async ( req, res ) => {
+  const image = await Image.findByPk(req.params.id);
+  image.content = req.body.content || image.content;
+  image.imageUrl = req.body.imageUrl || image.imageUrl;
+
+  await image.save();
+  res.json({ image })
+}))
 
 router.post('/', asyncHandler(async ( req, res ) => {
   let { content, imageUrl, userId, albumId } = req.body;
@@ -57,6 +65,19 @@ router.post('/', asyncHandler(async ( req, res ) => {
     image
   })
 }))
+
+router.delete(
+  '/:id(\\d+)',
+  asyncHandler(async (req, res, next) => {
+    const image = await Image.findByPk(req.params.id);
+    if (image) {
+      await image.destroy();
+      res.status(204).end();
+    } else {
+      next(productNotFoundError(req.params.id));
+    }
+  })
+);
 
 
 module.exports = router;

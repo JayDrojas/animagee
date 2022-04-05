@@ -1,6 +1,8 @@
 import { csrfFetch } from './csrf';
 const ADD_ONE_IMAGE = "images/addOneImage"
 const ADD_IMAGES = 'images/addImages';
+const REMOVE_ONE_IMAGE = 'images/removeOneImage';
+const UPDATE_ONE_IMAGE = 'images/updateOneImage'
 
 const addImages = (payload) => {
     return {
@@ -15,6 +17,41 @@ const setImage = (image) => {
         payload: image,
     };
 };
+
+const removeImage = (id) => {
+    return {
+        type: REMOVE_ONE_IMAGE,
+        payload: id
+    }
+}
+
+const updateImage = (image) => {
+    return {
+        type: UPDATE_ONE_IMAGE,
+        payload: image
+    }
+}
+
+export const editImage = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${payload.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        const image = data.image
+        dispatch(updateImage(image))
+    }
+}
+export const deleteImage = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${id}`, {
+        method: "DELETE"
+    })
+    if(response.ok) {
+        dispatch(removeImage(id))
+    }
+}
 
 export const getAllImages = () => async (dispatch) => {
     const response = await fetch('/api/images');
@@ -47,9 +84,17 @@ const imageReducer = (state = {}, action) => {
             return newState;
         case ADD_ONE_IMAGE: 
             newState = Object.assign({}, state);
-            console.log('---------->',action)
+            // console.log('---------->',action)
             newState[action.payload.id] = action.payload;
             return newState
+        case REMOVE_ONE_IMAGE: 
+            newState = {...state}
+            delete newState[action.payload]
+            return newState;
+        case UPDATE_ONE_IMAGE: 
+            newState = {...state}
+            newState[action.payload.id] = action.payload;
+            return newState;
         default: 
             return state;
     }
