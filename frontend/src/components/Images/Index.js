@@ -6,22 +6,22 @@ import './index.css';
 const Images = () => {
     const dispatch = useDispatch();
     const images = useSelector((state) => {
-        console.log(state.images)
-        return Object.values(state.image)});
-    console.log('images', images);
-
+        return Object.values(state.image)
+    });
+    
     useEffect(() => {
         dispatch(getAllImages());
-      }, [dispatch]);
+    }, [dispatch]);
 
     return (
         <div>
             <div className='images'>
-                <ul>
+                <ul id='ul-images'>
                     {images?.map(({ id, imageUrl, content }) => (
-                        <ImageDetail key={id} id={id} imageUrl={imageUrl} content={content}/>
+                        <li id='li-images' key={id}>
+                            <ImageDetail id={id} imageUrl={imageUrl} content={content} />
+                        </li>
                     ))}
-                    <li></li>
                 </ul>
             </div>
         </div>
