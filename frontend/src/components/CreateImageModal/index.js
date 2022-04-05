@@ -10,7 +10,7 @@ function CreateImgModal() {
           <button onClick={() => setShowModal(true)}>Create Image</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <CreateImageForm />
+              <CreateImageForm hideModal={() => setShowModal(false)} />
             </Modal>
           )}
         </>

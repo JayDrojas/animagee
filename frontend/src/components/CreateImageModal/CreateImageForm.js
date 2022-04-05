@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createOneImage } from '../../store/images'
 
-
-function CreateImageForm() {
+function CreateImageForm({ hideModal }) {
     const dispatch = useDispatch(); 
+    const sessionUser = useSelector((state) => state.session.user);
     const [content, setContent] = useState("");
     const [imageUrl, setImgUrl] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        setErrors([]);
+
+        if(content && imageUrl) {
+            setErrors([]);
+            await dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
+            hideModal();
+            // return dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
+            // .catch(async (res) => {
+            //     const data = await res.json();
+            //     if (data && data.errors) {
+            //         hideModal();
+            //         setErrors(data.errors);
+            //     }
+            // });
+        }
+        return setErrors(['Make sure content and image url is filled in.'])
     };
 
     return (

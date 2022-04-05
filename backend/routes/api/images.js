@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 
+const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
+const { setTokenCookie } = require('../../utils/auth');
 const { Image } = db;
 
 const productNotFoundError = (id) => {
@@ -14,28 +16,15 @@ const productNotFoundError = (id) => {
   return err;
 };
 
-const handleValidationErrors = (req, res, next) => {
-  const validationErrors = validationResult(req);
-  if (!validationErrors.isEmpty()) {
-    const errors = validationErrors.array().map((error) => error.msg);
-
-    const err = Error('Bad request.');
-    err.errors = errors;
-    err.status = 400;
-    err.title = 'Bad request.';
-    return next(err);
-  }
-  next();
-};
-
-// const validateImage = [
-//   check('image')
-//     .notEmpty()
-//     .isURL({ require_protocol: false, require_host: false }),
-//   check('name').not().isEmpty(),
-//   check('price').isInt(),
-//   handleValidationErrors
-// ];
+const validateImage = [
+  check('imageUrl')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provid an image url.'),
+  check('content')
+    .exists({checkFalsy: true})
+    .withMessage('Please provide a content or title.'),
+  handleValidationErrors
+];
 
 router.get(
   '/',
@@ -57,6 +46,17 @@ router.get(
     }
   })
 );
+
+router.post('/', asyncHandler(async ( req, res ) => {
+  let { content, imageUrl, userId, albumId } = req.body;
+  if(!albumId) albumId = null;
+  console.log({userId})
+  const image = await Image.create({ content, imageUrl, userId, albumId});
+
+  return res.json({
+    image
+  })
+}))
 
 
 module.exports = router;
