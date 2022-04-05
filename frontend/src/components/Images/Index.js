@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllImages } from '../../store/images';
+import ImageDetail from './ImageDetail.js'
+import './index.css';
 const Images = () => {
     const dispatch = useDispatch();
     const images = useSelector((state) => {
@@ -17,16 +19,9 @@ const Images = () => {
             <div className='images'>
                 <ul>
                     {images?.map(({ id, imageUrl, content }) => (
-                        // <ProductDetail
-                        // key={id}
-                        <li key={id}>
-                            <span>{content}</span>
-                            <img src={imageUrl}></img>
-                            {/* id={id}
-                            image={imageUrl}
-                            title={content} */}
-                        </li>
+                        <ImageDetail key={id} id={id} imageUrl={imageUrl} content={content}/>
                     ))}
+                    <li></li>
                 </ul>
             </div>
         </div>
