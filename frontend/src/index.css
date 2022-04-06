@@ -1,4 +1,18 @@
 /* TODO Add site wide styles */
+/* @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;1,200&family=Nosifer&display=swap');
+<style> */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;1,200&family=Bangers&family=Nosifer&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Otomanopee+One&display=swap');
+
 body {
-  background-color: rgb(123, 123, 123);
+  background-color: #f6f6f6;
+  margin: 0;
+}
+
+* {
+  /* font-family: 'Archivo', sans-serif; */
+  /* font-family: 'Bangers', cursive; */
+  font-family: 'Otomanopee One', sans-serif;
 }
