@@ -3,6 +3,7 @@ const ADD_ONE_IMAGE = "images/addOneImage"
 const ADD_IMAGES = 'images/addImages';
 const REMOVE_ONE_IMAGE = 'images/removeOneImage';
 const UPDATE_ONE_IMAGE = 'images/updateOneImage'
+const GET_ONE_IMAGE = 'images/getOneImage';
 
 const addImages = (payload) => {
     return {
@@ -32,6 +33,19 @@ const updateImage = (image) => {
     }
 }
 
+const getOne = (image) => {
+    return {
+        type: GET_ONE_IMAGE,
+        payload: image
+    }
+}
+
+export const getOneImage = (id) => async dispatch => {
+    const response = await fetch(`/api/images/${id}`);
+    const image = await response.json();
+    dispatch(getOne(image));
+}
+
 export const editImage = (payload) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${payload.id}`, {
         method: 'PUT',
@@ -48,7 +62,7 @@ export const deleteImage = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${id}`, {
         method: "DELETE"
     })
-    if(response.ok) {
+    if (response.ok) {
         dispatch(removeImage(id))
     }
 }
@@ -56,7 +70,7 @@ export const deleteImage = (id) => async (dispatch) => {
 export const getAllImages = () => async (dispatch) => {
     const response = await fetch('/api/images');
     console.log(response);
-    if(response.ok) {
+    if (response.ok) {
         const data = await response.json();
         dispatch(addImages(data.images))
     }
@@ -82,20 +96,28 @@ const imageReducer = (state = {}, action) => {
             console.log(action.payload)
             action.payload.forEach((image) => (newState[image.id] = image));
             return newState;
-        case ADD_ONE_IMAGE: 
+        case ADD_ONE_IMAGE:
             newState = Object.assign({}, state);
             // console.log('---------->',action)
             newState[action.payload.id] = action.payload;
             return newState
-        case REMOVE_ONE_IMAGE: 
-            newState = {...state}
+        // case GET_ONE_IMAGE: 
+        //     return {
+        //         ...state,
+        //         [action.image.id]: {
+        //             ...state[action.image.id],
+        //             ...action.image,
+        //         }
+        //     }
+        // case REMOVE_ONE_IMAGE:
+            newState = { ...state }
             delete newState[action.payload]
             return newState;
-        case UPDATE_ONE_IMAGE: 
-            newState = {...state}
+        case UPDATE_ONE_IMAGE:
+            newState = { ...state }
             newState[action.payload.id] = action.payload;
             return newState;
-        default: 
+        default:
             return state;
     }
 };
