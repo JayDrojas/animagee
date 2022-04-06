@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import Images from './components/Images/Index'
+import ImageDetail from "./components/Images/ImageDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Images />
+          </Route>
+          <Route exact path='/images/:imageId'>
+            <ImageDetail />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
