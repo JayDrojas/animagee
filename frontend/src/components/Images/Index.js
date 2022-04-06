@@ -23,16 +23,10 @@ const Images = () => {
             <nav>
                 {images?.map((image) => (
                     <Link key={image.id} to={`/images/${image.id}`} >
-                        <h3>
-                            {image.content}
-                        </h3>
                         <img src={`${image.imageUrl}`} />
                     </Link>
                 ))}
             </nav>
-        <Route exact path='/images/:imageId'>
-            <ImageDetail />
-        </Route>
         </main>
     );
 };

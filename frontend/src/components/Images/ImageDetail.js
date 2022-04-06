@@ -12,14 +12,12 @@ const ImageDetail = () => {
   const { imageId } = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const [showModal, setShowModal] = useState(false);
+
   const image = useSelector(state => state.image[imageId]);
 
-  // useEffect(() => {
-  //   dispatch(getOnePokemon(pokemonId));
-  //   setShowEditPokeForm(false);
-  //   setEditItemId(null);
-  // }, [dispatch, pokemonId]);
+  useEffect(() => {
+    dispatch(getOneImage(imageId));
+  }, [dispatch, imageId]);
 
   const handleDelete = (id) => {
     dispatch(deleteImage(id));
@@ -34,9 +32,10 @@ const ImageDetail = () => {
         <div className='button-row'>
           <button onClick={() => handleDelete(image?.id)} className='delete-button'>
             Delete
-          </button>
+          </ button>
           <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
         </div>}
+        <p>this will be comments</p>
     </div>
   );
 };
