@@ -100,15 +100,7 @@ const imageReducer = (state = {}, action) => {
             // console.log('---------->',action)
             newState[action.payload.id] = action.payload;
             return newState
-        // case GET_ONE_IMAGE:
-        //     return {
-        //         ...state,
-        //         [action.image.id]: {
-        //             ...state[action.image.id],
-        //             ...action.image,
-        //         }
-        //     }
-        // case REMOVE_ONE_IMAGE:
+        case REMOVE_ONE_IMAGE:
             newState = { ...state }
             delete newState[action.payload]
             return newState;
@@ -122,3 +114,12 @@ const imageReducer = (state = {}, action) => {
 };
 
 export default imageReducer;
+
+// case GET_ONE_IMAGE:
+//     return {
+//         ...state,
+//         [action.image.id]: {
+//             ...state[action.image.id],
+//             ...action.image,
+//         }
+//     }
