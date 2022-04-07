@@ -3,7 +3,7 @@ import { deleteImage } from '../../store/images';
 import { Modal } from '../../context/Modal';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { getOneImage } from '../../store/images';
+import { getOneImage, getAllImages } from '../../store/images';
 import UpdateImageModal from '../UpdateImageModal/index';
 import './index.css';
 
@@ -16,7 +16,7 @@ const ImageDetail = () => {
   const image = useSelector(state => state.image[imageId]);
 
   useEffect(() => {
-    dispatch(getOneImage(imageId));
+    dispatch(getAllImages());
   }, [dispatch, imageId]);
 
   const handleDelete = (id) => {
@@ -26,8 +26,8 @@ const ImageDetail = () => {
 
   return (
     <div className='image-detail'>
-      <img src={image?.imageUrl} alt={image?.content} />
-      <span className='product-title'>{image?.content}</span>
+    <h2 className='product-title'>{image?.content}</h2>
+    <img className="individual-images" src={image?.imageUrl} alt={image?.content} />
       {sessionUser && sessionUser.id === image?.userId &&
         <div className='button-row'>
           <button onClick={() => handleDelete(image?.id)} className='delete-button'>

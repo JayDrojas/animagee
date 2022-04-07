@@ -4,7 +4,7 @@ import { createOneImage } from '../../store/images'
 import './CreateImgForm.css';
 
 function CreateImageForm({ hideModal }) {
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [content, setContent] = useState("");
     const [imageUrl, setImgUrl] = useState("");
@@ -48,7 +48,7 @@ function CreateImageForm({ hideModal }) {
                     required
                 />
             </label>
-            <button type="submit">Post Image</button>
+            <button className="submit-bttn" type="submit">Post Image</button>
         </form>
     );
 }

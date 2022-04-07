@@ -6,17 +6,17 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import CreateImgModal from '../CreateImageModal';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        <div>
+        <div id="nav-div-createBttn">
           <CreateImgModal user={sessionUser} />
         </div>
-        <div>
+        <div id="nav-div-profileBttn">
           <ProfileButton user={sessionUser} />
         </div>
       </>
@@ -31,14 +31,17 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
-      <li>
+    <div id='nav-div'>
+      <div>
+        <NavLink className="submit-bttn" exact to="/">Home</NavLink>
+      </div>
+      <div>
+      <NavLink id="animage-logo" exact to="/">Animage</NavLink>
+      </div>
+      <div className="nav-div-create-profile-bttn">
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

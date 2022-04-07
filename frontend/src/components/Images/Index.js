@@ -12,21 +12,21 @@ const Images = () => {
         return Object.values(state.image)
     });
 
-    console.log(images[1], "-------->")
-
     useEffect(() => {
         dispatch(getAllImages());
     }, [dispatch]);
 
     return (
         <main>
-            <nav>
-                {images?.map((image) => (
-                    <Link key={image.id} to={`/images/${image.id}`} >
-                        <img src={`${image.imageUrl}`} />
-                    </Link>
-                ))}
-            </nav>
+            <div className="all-images-container">
+                <nav>
+                    {images?.map((image) => (
+                        <Link key={image.id} to={`/images/${image.id}`} >
+                            <img className="images-all-main" src={`${image.imageUrl}`} />
+                        </Link>
+                    ))}
+                </nav>
+            </div>
         </main>
     );
 };

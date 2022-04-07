@@ -7,7 +7,7 @@ function CreateImgModal() {
 
     return (
         <>
-          <button onClick={() => setShowModal(true)}>Create Image</button>
+          <button className="submit-bttn" onClick={() => setShowModal(true)}>Create Image</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
               <CreateImageForm hideModal={() => setShowModal(false)} />
