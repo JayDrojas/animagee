@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
         <NavLink className="submit-bttn" exact to="/">Home</NavLink>
       </div>
       <div>
-      <NavLink id="animage-logo" exact to="/">Animage</NavLink>
+      <NavLink id="animage-logo" exact to="/">Animagee</NavLink>
       </div>
       <div className="nav-div-create-profile-bttn">
         {isLoaded && sessionLinks}
