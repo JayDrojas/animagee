@@ -55,7 +55,7 @@ router.put('/:id(\\d+)', asyncHandler(async ( req, res ) => {
   res.json({ image })
 }))
 
-router.post('/', requireAuth, asyncHandler(async ( req, res ) => {
+router.post('/', requireAuth, validateImage, asyncHandler(async ( req, res ) => {
   let { content, imageUrl, userId, albumId } = req.body;
   if(!albumId) albumId = null;
   console.log({userId})

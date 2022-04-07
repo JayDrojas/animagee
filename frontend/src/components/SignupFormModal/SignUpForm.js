@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignUpForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -70,9 +70,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="submit-bttn" type="submit">Sign Up</button>
     </form>
   );
 }
 
-export default SignupFormPage;
+export default SignUpForm;

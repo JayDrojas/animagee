@@ -36,7 +36,7 @@ function CreateImageForm({ hideModal }) {
                     type="text"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -45,7 +45,7 @@ function CreateImageForm({ hideModal }) {
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImgUrl(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <button className="submit-bttn" type="submit">Post Image</button>

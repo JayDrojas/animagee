@@ -1,4 +1,3 @@
-// frontend/src/components/LoginFormModal/LoginForm.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
@@ -45,7 +44,11 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="submit-bttn" type="submit">Log In</button>
+      <button onClick={e => {
+        setCredential("demo@user.io");
+        setPassword("password");
+      }} className="submit-bttn" type="submit">Demo User</button>
     </form>
   );
 }
