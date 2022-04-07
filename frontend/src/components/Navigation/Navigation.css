@@ -49,6 +49,11 @@
     margin-left: 10px;
 }
 
-.nav-div-create-profile-bttn button {
+/* .nav-div-create-profile-bttn button {
     margin-left: 10px;
+} */
+
+.fa-user-circle {
+    font-size: 15px;
+    /* padding: 0px 0px; */
 }
