@@ -10,14 +10,13 @@ const loadComments = (comments, imageId) => {
 }
 
 export const getComments = (imageId) => async (dispatch) => {
-  const response = await fetch(`/api/images/${imageId}/items`)
+  const response = await fetch(`/api/images/${imageId}/comments`)
 
   if(response.ok) {
     const comments = await response.json();
     dispatch(loadComments(comments, imageId))
   }
 }
-
 
 const commentReducer = (state = {}, action) => {
   // let newState = {};
@@ -28,9 +27,10 @@ const commentReducer = (state = {}, action) => {
         newComments[comment.id] = comment;
       })
       return {
-        ...state,
         ...newComments
       }
+    default:
+      return state;
   }
 }
 
