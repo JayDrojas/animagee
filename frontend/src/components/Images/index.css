@@ -14,8 +14,7 @@
     max-height: 500px;
     height: 100%;
     width: 100%;
-    /* max-width: 300px;
-    max-height: 300px; */
+
 }
 /* all images in home page */
 .all-images-container {
@@ -24,9 +23,28 @@
     border: solid 1px black;
 }
 
+.all-images-container img:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+
+
 .images-all-main {
     max-width:300px;
     max-height: 300px;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+    line-height: 0;
+
+    -webkit-column-count: 5;
+    -webkit-column-gap:   0px;
+    -moz-column-count:    5;
+    -moz-column-gap:      0px;
+    column-count:         5;
+    column-gap:           0px;
 }
 
 main {
