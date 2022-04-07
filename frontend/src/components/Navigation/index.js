@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from "../SignupFormModal";
 import './Navigation.css';
 import CreateImgModal from '../CreateImageModal';
 
@@ -20,12 +21,12 @@ function Navigation({ isLoaded }) {
           <ProfileButton user={sessionUser} />
         </div>
       </>
-    )
+    );
   } else {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <SignUpFormModal />
       </>
     );
   }

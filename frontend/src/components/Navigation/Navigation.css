@@ -4,13 +4,15 @@
     justify-content: space-between;
     padding: 15px;
     border-radius: 5px;
+    position: sticky;
+    z-index: 10;
 }
 
 
 #nav-div-createBttn, #nav-div-profileBttn {
     display: inline-flex;
     justify-content: flex-end;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .profile-dropdown {
@@ -32,11 +34,6 @@
     padding: 10px;
 }
 
-/* .nav-div-create-profile-bttn {
-    display: flex;
-    justify-content: space-between;
-} */
-
 .profile-dropdown {
     color: white;
 }
@@ -46,4 +43,12 @@
     font-weight: bold;
     font-size: 30px;
     text-decoration: none;
+}
+
+.nav-div-create-profile-bttn a {
+    margin-left: 10px;
+}
+
+.nav-div-create-profile-bttn button {
+    margin-left: 10px;
 }

@@ -14,13 +14,19 @@
     max-height: 500px;
     height: 100%;
     width: 100%;
-
 }
 /* all images in home page */
 .all-images-container {
     justify-content: center;
-    width: 80%;
-    border: solid 1px black;
+    width: 90%;
+    /* border: solid 1px black; */
+    /* line-height: 0; */
+    -webkit-column-count: 4;
+    -webkit-column-gap:   0px;
+    -moz-column-count:    4;
+    -moz-column-gap:      0px;
+    column-count:         4;
+    column-gap:           0px;
 }
 
 .all-images-container img:hover {
@@ -45,6 +51,9 @@
     -moz-column-gap:      0px;
     column-count:         5;
     column-gap:           0px;
+
+    width: 100% !important;
+    height: auto !important;
 }
 
 main {
