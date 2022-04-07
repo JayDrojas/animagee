@@ -44,7 +44,9 @@ const ImageDetail = () => {
           <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
         </div>}
       <div>
-        <Comments />
+        {comments?.map((comment) =>
+          <Comments key={comment.id} commentId={comment.id}/>
+        )}
       </div>
     </div>
   );
