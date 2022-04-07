@@ -69,7 +69,6 @@ export const deleteImage = (id) => async (dispatch) => {
 
 export const getAllImages = () => async (dispatch) => {
     const response = await fetch('/api/images');
-    console.log(response);
     if (response.ok) {
         const data = await response.json();
         dispatch(addImages(data.images))
@@ -93,7 +92,7 @@ const imageReducer = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
         case ADD_IMAGES:
-            console.log(action.payload)
+            // console.log(action.payload)
             action.payload.forEach((image) => (newState[image.id] = image));
             return newState;
         case ADD_ONE_IMAGE:
@@ -101,7 +100,7 @@ const imageReducer = (state = {}, action) => {
             // console.log('---------->',action)
             newState[action.payload.id] = action.payload;
             return newState
-        // case GET_ONE_IMAGE: 
+        // case GET_ONE_IMAGE:
         //     return {
         //         ...state,
         //         [action.image.id]: {
