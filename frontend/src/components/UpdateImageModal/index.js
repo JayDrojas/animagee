@@ -7,7 +7,7 @@ function UpdateImageModal({user, image}) {
 
     return (
         <>
-          <button onClick={() => setShowModal(true)}>Update Image</button>
+          <button className="submit-bttn" onClick={() => setShowModal(true)}>Update Image</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
               <UpdateImageForm image={image} user={user} hideModal={() => setShowModal(false)} />
