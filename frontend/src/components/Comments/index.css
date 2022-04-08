@@ -39,11 +39,12 @@
 .comments-outer-div {
     text-align: center;
     align-content: center;
-    width: 70%;
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center; */
+    width: 100%;
+    height: 1000px;
+    max-height: 900px;
+    overflow-y: auto;
+    overflow-wrap: inherit;
+    background-image: url("https://www.wallpaperbetter.com/wallpaper/753/195/742/anime-branch-environment-river-bridge-720P-wallpaper.jpg");
 }
 
 .image-comment-outer-div {
@@ -51,11 +52,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 1000px;
-    max-height: 1000px;
-    overflow-y: auto;
-    overflow-wrap: inherit;
-    background-image: url("https://www.wallpaperbetter.com/wallpaper/753/195/742/anime-branch-environment-river-bridge-720P-wallpaper.jpg");
 }
 .one-comment-div {
     margin: 50px 10px;
@@ -64,8 +60,3 @@
     justify-content: center;
     align-items: center;
 }
-
-/* .all-modals-bttns {
-    position: absolute;
-    right: 14%;
-} */
