@@ -13,6 +13,10 @@ function CreateCommentForm ({ hideModal }) {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
+    if(!sessionUser) {
+      return setErrors(['Must be logged in.'])
+    }
+
     const comment = {
       userId: sessionUser.id,
       content
@@ -32,9 +36,9 @@ function CreateCommentForm ({ hideModal }) {
     <form onSubmit={handleSubmit}>
       <h3>Comment on Image</h3>
       <ul>
-        {errors.map((error, idx) => {
+        {errors?.map((error, idx) =>
           <li key={idx}>{error}</li>
-        })}
+        )}
       </ul>
       <label>
         Comment:
