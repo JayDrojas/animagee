@@ -47,7 +47,7 @@ function UpdateImageForm({ hideModal, image, user }) {
                     required
                 />
             </label>
-            <button type="submit">Update Image</button>
+            <button className='submit-bttn' type="submit">Update Image</button>
         </form>
     );
 }

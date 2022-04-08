@@ -7,7 +7,7 @@ function DeleteCommentModal ({ comment }) {
 
   return (
     <>
-      <button className="submit-bttn"
+      <button className="submit-bttn delete"
       onClick={() => setShowModal(true)}>
         Delete Comment
       </button>

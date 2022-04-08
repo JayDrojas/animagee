@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { getOneImage, getAllImages } from '../../store/images';
 import UpdateImageModal from '../UpdateImageModal/index';
-import { getComments } from '../../store/comments'
 import Comments from '../Comments';
 import './index.css';
 
@@ -19,7 +18,6 @@ const ImageDetail = () => {
 
   useEffect(() => {
     dispatch(getAllImages());
-    // dispatch(getComments(imageId));
   }, [dispatch]);
 
   const handleDelete = (id) => {
@@ -28,20 +26,30 @@ const ImageDetail = () => {
   };
 
   return (
-    <div className='image-detail'>
-      <h2 className='product-title'>{image?.content}</h2>
-      <img className="individual-images" src={image?.imageUrl} alt={image?.content} />
-      {sessionUser && sessionUser.id === image?.userId &&
-        <div className='button-row'>
-          <button onClick={() => handleDelete(image?.id)} className='delete-button'>
-            Delete
-          </ button>
-          <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
-        </div>}
-      <div>
+    <>
+      <div className='image-detail'>
+        <div className='image-container'>
+          <h2 className='image-title'>{image?.content}</h2>
+          <img className="individual-images" src={image?.imageUrl} alt={image?.content} />
+          {sessionUser && sessionUser.id === image?.userId &&
+            <div className='button-row'>
+              <div className='bttn-in-row'>
+                <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
+              </div>
+
+              <div className='bttn-in-row'>
+                <button onClick={() => handleDelete(image?.id)} className='submit-bttn delete'>
+                  Delete
+                </ button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div className='image-comment-outer-div'>
         <Comments />
       </div>
-    </div>
+    </>
   );
 };
 export default ImageDetail;

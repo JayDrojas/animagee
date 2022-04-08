@@ -1,7 +1,64 @@
+.create-comment-modal {
+    margin-top: 20px;
+}
+
+.action-bttns-comments {
+    margin-left: 50px;
+    display: flex;
+}
+
+.action-btt-comment{
+    margin-left: 20px;
+}
+
+.submit-bttn.delete {
+    background-color: red;
+}
+
 .comment-div {
     display: flex;
-    border: 1px solid black;
+    border: 4px solid #6200EE;
     justify-content: center;
+    align-items: center;
     flex-flow: row;
-    padding: 0px 40px;
+    padding: 10px 40px;
+    margin: 10px 10px;
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px #3700B3 ;
 }
+.profile-logo {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    margin-right: 10px;
+}
+
+.comments-outer-div {
+    text-align: center;
+    align-content: center;
+    width: 70%;
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.image-comment-outer-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.one-comment-div {
+    margin: 50px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .all-modals-bttns {
+    position: absolute;
+    right: 14%;
+} */

@@ -26,7 +26,7 @@ function DeleteCommentForm ({ hideModal, comment }) {
           onChange={e => setContent(e.target.value)}
         />
       </label>
-      <button className="submit-bttn" type="submit">Confirm Delete</button>
+      <button className="submit-bttn delete" type="submit">Confirm Delete</button>
     </form>
   )
 }
