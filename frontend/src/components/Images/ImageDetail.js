@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { getOneImage, getAllImages } from '../../store/images';
 import UpdateImageModal from '../UpdateImageModal/index';
+import { getComments } from '../../store/comments'
+import Comments from '../Comments';
 import './index.css';
 
 const ImageDetail = () => {
@@ -17,7 +19,8 @@ const ImageDetail = () => {
 
   useEffect(() => {
     dispatch(getAllImages());
-  }, [dispatch, imageId]);
+    // dispatch(getComments(imageId));
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     dispatch(deleteImage(id));
@@ -26,8 +29,8 @@ const ImageDetail = () => {
 
   return (
     <div className='image-detail'>
-    <h2 className='product-title'>{image?.content}</h2>
-    <img className="individual-images" src={image?.imageUrl} alt={image?.content} />
+      <h2 className='product-title'>{image?.content}</h2>
+      <img className="individual-images" src={image?.imageUrl} alt={image?.content} />
       {sessionUser && sessionUser.id === image?.userId &&
         <div className='button-row'>
           <button onClick={() => handleDelete(image?.id)} className='delete-button'>
@@ -35,7 +38,9 @@ const ImageDetail = () => {
           </ button>
           <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
         </div>}
-        <p>this will be comments</p>
+      <div>
+        <Comments />
+      </div>
     </div>
   );
 };

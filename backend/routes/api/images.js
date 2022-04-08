@@ -6,7 +6,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Image } = db;
+const { Image, Comment } = db;
 
 const productNotFoundError = (id) => {
   const err = Error('Image not found');
@@ -21,7 +21,7 @@ const validateImage = [
     .exists({ checkFalsy: true })
     .withMessage('Please provid an image url.'),
   check('content')
-    .exists({checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage('Please provide a content or title.'),
   handleValidationErrors
 ];
@@ -46,7 +46,32 @@ router.get(
     }
   })
 );
-router.put('/:id(\\d+)', asyncHandler(async ( req, res ) => {
+
+router.get(
+  '/:id(\\d+)/comments',
+  asyncHandler(async function (req, res) {
+    const comments = await Comment.findAll({
+      where: {
+        imageId: +req.params.id,
+      },
+    })
+    return res.json(comments);
+  })
+)
+
+router.post('/:id(\\d+)/comments', asyncHandler(async function (req, res) {
+  const newComment = await Comment.create({
+    ...req.body,
+    imageId: +req.params.id
+  })
+  const comment = await Comment.findByPk(newComment.id);
+
+  return res.json(comment)
+})
+)
+
+
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
   const image = await Image.findByPk(req.params.id);
   image.content = req.body.content || image.content;
   image.imageUrl = req.body.imageUrl || image.imageUrl;
@@ -55,11 +80,11 @@ router.put('/:id(\\d+)', asyncHandler(async ( req, res ) => {
   res.json({ image })
 }))
 
-router.post('/', requireAuth, validateImage, asyncHandler(async ( req, res ) => {
+router.post('/', requireAuth, validateImage, asyncHandler(async (req, res) => {
   let { content, imageUrl, userId, albumId } = req.body;
-  if(!albumId) albumId = null;
-  console.log({userId})
-  const image = await Image.create({ content, imageUrl, userId, albumId});
+  if (!albumId) albumId = null;
+  console.log({ userId })
+  const image = await Image.create({ content, imageUrl, userId, albumId });
 
   return res.json({
     image

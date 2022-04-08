@@ -1,0 +1,34 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteComment } from '../../store/comments'
+
+function DeleteCommentForm ({ hideModal, comment }) {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  const [content, setContent] = useState(comment.content);
+  console.log(comment, "-----")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+      dispatch(deleteComment(comment.id))
+      hideModal();
+  }
+
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h3>Are you sure you want to delete this comment?</h3>
+      <label>
+        Comment:
+        <input
+          type="text"
+          value={content}
+          onChange={e => setContent(e.target.value)}
+        />
+      </label>
+      <button className="submit-bttn" type="submit">Confirm Delete</button>
+    </form>
+  )
+}
+
+export default DeleteCommentForm;

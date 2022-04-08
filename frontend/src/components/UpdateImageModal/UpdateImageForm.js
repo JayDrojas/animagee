@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { editImage } from '../../store/images'
 
-function CreateImageForm({ hideModal, image, user }) {
-    const dispatch = useDispatch(); 
+function UpdateImageForm({ hideModal, image, user }) {
+    const dispatch = useDispatch();
     // const sessionUser = useSelector((state) => state.session.user);
     const [content, setContent] = useState(image.content);
     const [imageUrl, setImgUrl] = useState(image.imageUrl);
@@ -52,4 +52,4 @@ function CreateImageForm({ hideModal, image, user }) {
     );
 }
 
-export default CreateImageForm;
+export default UpdateImageForm;
