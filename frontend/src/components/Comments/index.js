@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import CreateCommentModal from '../CreateCommentModal'
 import UpdateCommentModal from '../UpdateCommentModal';
+import DeleteCommentModal from '../DeleteCommentModal';
 import { getComments } from '../../store/comments';
 import './index.css';
 import { useEffect } from 'react';
@@ -13,6 +14,8 @@ const Comments = () => {
   let comments = useSelector(state => {
     return Object.values(state.comments)
   });
+
+  console.log(comments)
 
   useEffect(() => {
     dispatch(getComments(imageId));
@@ -30,6 +33,7 @@ const Comments = () => {
             {comment?.content}
           </h3>
           <UpdateCommentModal comment={comment}/>
+          <DeleteCommentModal comment={comment}/>
         </div>
       )}
     </div>

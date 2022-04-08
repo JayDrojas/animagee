@@ -14,7 +14,7 @@ function UpdateCommentForm ({ hideModal, comment }) {
 
     if(content) {
       setErrors([]);
-      await dispatch(updateComment({content, userId: sessionUser.id, id: comment.id}))
+       dispatch(updateComment({content, userId: sessionUser.id, id: comment.id}))
       hideModal();
     } else {
       return setErrors(["Make sure content is filled in."])
@@ -26,9 +26,9 @@ function UpdateCommentForm ({ hideModal, comment }) {
     <form onSubmit={handleSubmit}>
       <h3>Update Comment</h3>
       <ul>
-        {errors.map((error, idx) => {
+        {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
-        })}
+        ))}
       </ul>
       <label>
         Comment:

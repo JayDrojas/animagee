@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 const LOAD_COMMENTS = "comments/loadComments";
 const ADD_COMMENT = "comments/addComment";
 const UPDATE_COMMENT = "comments/updateComment";
+const REMOVE_COMMENT = "comments/removeComment";
 
 const loadComments = (comments, imageId) => {
   return {
@@ -10,6 +11,7 @@ const loadComments = (comments, imageId) => {
     imageId
   }
 }
+
 
 const addComment = (comment) => ({
   type: ADD_COMMENT,
@@ -21,10 +23,27 @@ const update = (comment) => ({
   comment
 })
 
+const removeComment = (id) => {
+  return {
+    type: REMOVE_COMMENT,
+    payload: id
+  }
+}
+
+export const deleteComment = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/comments/${id}`, {
+    method: "DELETE"
+  })
+
+  if (response.ok) {
+    dispatch(removeComment(id))
+  }
+}
+
 export const getComments = (imageId) => async (dispatch) => {
   const response = await fetch(`/api/images/${imageId}/comments`)
 
-  if(response.ok) {
+  if (response.ok) {
     const comments = await response.json();
     dispatch(loadComments(comments, imageId))
   }
@@ -39,10 +58,9 @@ export const updateComment = (data) => async dispatch => {
     body: JSON.stringify(data)
   });
 
-  if(response.ok) {
+  if (response.ok) {
     const comment = await response.json();
     dispatch(update(comment));
-    return comment;
   }
 }
 
@@ -55,15 +73,14 @@ export const createComment = (data, imageId) => async (dispatch) => {
     body: JSON.stringify(data)
   })
 
-  if(response.ok) {
+  if (response.ok) {
     const comment = await response.json();
     dispatch(addComment(comment))
-    return comment;
   }
 };
 
 const commentReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_COMMENTS:
       const newComments = {};
       action.comments.forEach((comment) => {
@@ -78,6 +95,19 @@ const commentReducer = (state = {}, action) => {
         ...state,
         [action.comment.id]: action.comment
       }
+
+    case UPDATE_COMMENT:
+      console.log(action)
+      return {
+        ...state,
+        [action.comment.comment.id]: action.comment.comment
+      }
+
+    case REMOVE_COMMENT:
+      console.log(action, "------")
+      const newState = {...state}
+      delete newState[action.payload];
+      return newState
     default:
       return state;
   }
