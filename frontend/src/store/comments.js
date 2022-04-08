@@ -31,7 +31,7 @@ export const getComments = (imageId) => async (dispatch) => {
 }
 
 export const updateComment = (data) => async dispatch => {
-  const response = await fetch(`/api/comments/${data.id}`, {
+  const response = await csrfFetch(`/api/comments/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json'

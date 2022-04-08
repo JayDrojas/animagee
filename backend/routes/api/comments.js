@@ -4,20 +4,13 @@ const { Comment } = require("../../db/models");
 
 const router = express.Router();
 
-router.put('/:id(\\d+)/comments', asyncHandler( async (res, req) => {
-  const commentId = req.body.id;
-  delete req.body.id;
+router.put('/:id(\\d+)', asyncHandler( async (req, res) => {
+  const comment = await Comment.findByPk(req.params.id)
 
-  console.log(req.body)
-  await Comment.update(req.body, {
-    where: { id: commentId},
-    returning: true,
-    plain: true,
-  });
+  comment.content = req.body.content || comment.content;
 
-  const comment = await Comment.findByPk(commentId);
-
-  return res.json(comment);
+  await comment.save();
+  res.json({ comment })
 }))
 
 module.exports = router;

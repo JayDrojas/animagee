@@ -16,16 +16,11 @@ const ImageDetail = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   const image = useSelector(state => state.image[imageId]);
-  // let comments = useSelector(state => {
-  //   return Object.values(state.comments)
-  // });
-
-  // comments.filter(comment => comment.imageId == imageId)
 
   useEffect(() => {
     dispatch(getAllImages());
-    dispatch(getComments(imageId));
-  }, [dispatch, imageId]);
+    // dispatch(getComments(imageId));
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     dispatch(deleteImage(id));
