@@ -97,7 +97,6 @@ const imageReducer = (state = {}, action) => {
             return newState;
         case ADD_ONE_IMAGE:
             newState = Object.assign({}, state);
-            // console.log('---------->',action)
             newState[action.payload.id] = action.payload;
             return newState
         case REMOVE_ONE_IMAGE:

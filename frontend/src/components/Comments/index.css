@@ -1,4 +1,7 @@
 .comment-div {
     display: flex;
     border: 1px solid black;
+    justify-content: center;
+    flex-flow: row;
+    padding: 0px 40px;
 }

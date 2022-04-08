@@ -16,11 +16,11 @@ const ImageDetail = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   const image = useSelector(state => state.image[imageId]);
-  let comments = useSelector(state => {
-    return Object.values(state.comments)
-  });
+  // let comments = useSelector(state => {
+  //   return Object.values(state.comments)
+  // });
 
-  comments.filter(comment => comment.imageId == imageId)
+  // comments.filter(comment => comment.imageId == imageId)
 
   useEffect(() => {
     dispatch(getAllImages());
@@ -44,9 +44,7 @@ const ImageDetail = () => {
           <UpdateImageModal user={{ ...sessionUser }} image={{ ...image }} />
         </div>}
       <div>
-        {comments?.map((comment) =>
-          <Comments key={comment.id} commentId={comment.id}/>
-        )}
+        <Comments />
       </div>
     </div>
   );
