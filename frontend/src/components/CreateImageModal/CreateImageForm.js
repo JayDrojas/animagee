@@ -15,7 +15,7 @@ function CreateImageForm({ hideModal }) {
 
         const submitErrors = [];
 
-        let isValid = imageUrl.match(/(jpe?g|tiff|png|gif|bmp)$/) === null;
+        let isValid = imageUrl.match(/(jpe?g|tiff|png|gif|bmp)/) === null;
         // console.log(isValid)
 
         if (isValid) submitErrors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".');
