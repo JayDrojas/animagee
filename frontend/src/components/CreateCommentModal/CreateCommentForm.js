@@ -40,9 +40,9 @@ function CreateCommentForm ({ hideModal }) {
           <li key={idx}>{error}</li>
         )}
       </ul>
-      <label>
+      <label id='label-textarea-comment'>
         Comment:
-        <input
+        <textarea
           type="text"
           value={content}
           onChange={e => setContent(e.target.value)}

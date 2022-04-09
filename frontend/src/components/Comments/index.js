@@ -23,33 +23,36 @@ const Comments = () => {
   comments = comments.filter(comment => comment.imageId === +imageId)
 
   return (
-    <div  className='comments-outer-div'>
+    <div className='comments-outer-div'>
       <div className='create-comment-modal'>
-        <CreateCommentModal  />
+        <CreateCommentModal />
       </div>
       {comments?.map(comment =>
         <div className='one-comment-div' key={comment?.id}>
           <div className='comment-div'>
             <div className='profile-logo'>
-            <i className="fas fa-user-circle" />
+              <i className="fas fa-user-circle" />
+              <p>{comment?.User?.username}</p>
             </div>
-          <h3>
-          {comment?.content}
-          </h3>
+            <div id='comment-content'>
+              <h3>
+                {comment?.content}
+              </h3>
+            </div>
           </div>
           <div className='all-modals-bttns'>
-          {sessionUser && sessionUser.id === comment?.userId && (
-            <div className='action-bttns-comments'>
-              <div className='action-btt-comment'>
-                <UpdateCommentModal comment={comment}/>
+            {sessionUser && sessionUser.id === comment?.userId && (
+              <div className='action-bttns-comments'>
+                <div className='action-btt-comment'>
+                  <UpdateCommentModal comment={comment} />
+                </div>
+                <div className='action-btt-comment'>
+                  <DeleteCommentModal comment={comment} />
+                </div>
               </div>
-              <div className='action-btt-comment'>
-                <DeleteCommentModal comment={comment}/>
-              </div>
-            </div>
-          )
-        }
-        </div>
+            )
+            }
+          </div>
         </div>
       )}
     </div>

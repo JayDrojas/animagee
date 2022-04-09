@@ -91,3 +91,7 @@ main {
 .bttn-in-row {
     margin-left: 20px;
 }
+
+.submit-bttn:hover {
+    cursor: pointer;
+}

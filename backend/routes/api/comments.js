@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Comment } = require("../../db/models");
+const { Comment, User } = require("../../db/models");
 const router = express.Router();
 
 const productNotFoundError = (id) => {
@@ -12,7 +12,13 @@ const productNotFoundError = (id) => {
 };
 
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
-  const comment = await Comment.findByPk(req.params.id)
+  // const comment = await Comment.findByPk(req.params.id)
+  const comment = await Comment.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: User
+  })
 
   comment.content = req.body.content || comment.content;
 

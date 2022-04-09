@@ -6,7 +6,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Image, Comment } = db;
+const { Image, Comment, User } = db;
 
 const productNotFoundError = (id) => {
   const err = Error('Image not found');
@@ -54,6 +54,7 @@ router.get(
       where: {
         imageId: +req.params.id,
       },
+      include: User
     })
     return res.json(comments);
   })
@@ -64,7 +65,13 @@ router.post('/:id(\\d+)/comments', asyncHandler(async function (req, res) {
     ...req.body,
     imageId: +req.params.id
   })
-  const comment = await Comment.findByPk(newComment.id);
+  // const comment = await Comment.findByPk(newComment.id);
+  const comment = await Comment.findOne({
+    where: {
+      id: newComment.id,
+    },
+    include: User
+  })
 
   return res.json(comment)
 })
