@@ -16,6 +16,14 @@ const Comments = () => {
     return Object.values(state.comments)
   });
 
+  const backgroundImgs = ["https://wallpaperboat.com/wp-content/uploads/2020/10/20/57340/leaf-village-05.jpg", "https://www.wallpaperbetter.com/wallpaper/753/195/742/anime-branch-environment-river-bridge-720P-wallpaper.jpg", "https://images5.alphacoders.com/495/thumb-1920-495521.jpg"];
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const imgIdx = getRandomInt(3);
+
   useEffect(() => {
     dispatch(getComments(imageId));
   }, [dispatch, imageId])
@@ -23,7 +31,14 @@ const Comments = () => {
   comments = comments.filter(comment => comment.imageId === +imageId)
 
   return (
-    <div className='comments-outer-div'>
+    <div className='comments-outer-div'
+      style={{
+        backgroundImage: `url(${backgroundImgs[imgIdx]})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <div className='create-comment-modal'>
         <CreateCommentModal />
       </div>

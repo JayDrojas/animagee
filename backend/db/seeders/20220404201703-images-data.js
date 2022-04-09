@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       userId: "2",
-      imageUrl: "http://m.gettywallpapers.com/wp-content/uploads/2021/01/Cool-Anime-Wallpaper.jpg",
+      imageUrl: "https://media.comicbook.com/2021/01/boruto-manga-chapter-54-spoilers-sasuke-eye-injury-sharingan-rin-1253618.jpeg?auto=webp",
       albumId: "2",
       content: "Sasuke",
     },
@@ -71,7 +71,7 @@ module.exports = {
     },
     {
       userId: "6",
-      imageUrl: "https://static.wikia.nocookie.net/dragonball/images/2/29/GotenNV.png/revision/latest?cb=20191108050056",
+      imageUrl: "https://i.ytimg.com/vi/w0gKtZQL2KY/maxresdefault.jpg",
       albumId: "3",
       content: "Goten",
     },
