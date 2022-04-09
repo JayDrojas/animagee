@@ -10,15 +10,7 @@ function CreateImageForm({ hideModal }) {
     const [imageUrl, setImgUrl] = useState("");
     const [errors, setErrors] = useState([]);
 
-    // useEffect(() => {
-    //     const errorsArray = [];
-    //     if(content.length > 0) errorsArray.push('Content must be field in')
-    //     if (imageUrl.match(/(jpe?g|tiff|png|gif|bmp)$/) === null) errors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".')
-    //     setErrors(errorsArray);
-    // })
-
-
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const submitErrors = [];
@@ -26,33 +18,35 @@ function CreateImageForm({ hideModal }) {
         let isValid = imageUrl.match(/(jpe?g|tiff|png|gif|bmp)$/) === null;
         // console.log(isValid)
 
-        if(isValid) submitErrors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".');
-        if(content.length <= 0) submitErrors.push('Content must be field in')
+        if (isValid) submitErrors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".');
+        if (content.length <= 0) submitErrors.push('Content must be field in')
 
-        if(content && imageUrl && !isValid) {
+        if (content && imageUrl && !isValid) {
             setErrors([]);
             await dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
             hideModal();
-         } else {
-             return setErrors(submitErrors);
-         }
+        } else {
+            return setErrors(submitErrors);
+        }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <h3>Create Image Post</h3>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
+            {errors.length > 0 && (
+                <ul className="errors-ul">
+                <h4>Invalid Entries</h4>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+            )}
+            <div className="form-div">
             <label>
                 Content / Title
                 <input
                     type="text"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    // required
+                // required
                 />
             </label>
             <label>
@@ -61,9 +55,10 @@ function CreateImageForm({ hideModal }) {
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImgUrl(e.target.value)}
-                    // required
+                // required
                 />
             </label>
+            </div>
             <button className="submit-bttn" type="submit">Post Image</button>
         </form>
     );

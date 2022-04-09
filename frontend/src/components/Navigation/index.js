@@ -11,6 +11,18 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
+  let imageTitle;
+  if(sessionUser) {
+    imageTitle = (
+      <>
+      <NavLink id="animage-logo" exact to="/">Welcome {sessionUser.username}</NavLink>
+      </>
+    )
+  } else {
+    imageTitle = (<>
+    <NavLink id="animage-logo" exact to="/">Animagee</NavLink>
+    </>)
+  }
   if (sessionUser) {
     sessionLinks = (
       <>
@@ -37,7 +49,7 @@ function Navigation({ isLoaded }) {
         <NavLink className="submit-bttn" exact to="/">Home</NavLink>
       </div>
       <div>
-      <NavLink id="animage-logo" exact to="/">Animagee</NavLink>
+      {imageTitle}
       </div>
       <div className="nav-div-create-profile-bttn">
         {isLoaded && sessionLinks}

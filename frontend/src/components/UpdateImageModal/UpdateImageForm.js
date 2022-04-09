@@ -24,18 +24,20 @@ function UpdateImageForm({ hideModal, image, user }) {
     return (
         <form onSubmit={handleSubmit}>
             <h3>Update Image Post</h3>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
+            {errors.length > 0 && (
+                <ul className="errors-ul">
+                <p>Invalid Entries</p>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
+              )}
+              <div className="form-div">
             <label>
                 Content / Title
                 <input
                     type="text"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    required
+                    // required
                 />
             </label>
             <label>
@@ -44,9 +46,10 @@ function UpdateImageForm({ hideModal, image, user }) {
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImgUrl(e.target.value)}
-                    required
+                    // required
                 />
             </label>
+            </div>
             <button className='submit-bttn' type="submit">Update Image</button>
         </form>
     );

@@ -16,3 +16,28 @@ body {
   /* font-family: 'Bangers', cursive; */
   font-family: 'Otomanopee One', sans-serif;
 }
+
+.form-div {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.form-div label {
+  margin-bottom: 10px;
+  /* margin-left: ; */
+}
+
+.form-div input {
+  margin-left: 20px;
+}
+
+.errors-ul {
+  color: red;
+}
+
+#buttons-form-update {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -20,19 +20,22 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+    <form className="form-form" onSubmit={handleSubmit}>
+      <h3>Log In</h3>
+      {errors.length > 0 && (
+        <ul className="errors-ul">
+        <p>Invalid Entries</p>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+    )}
+      <div className="form-div">
       <label>
         Username or Email
         <input
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
-          required
+          // required
         />
       </label>
       <label>
@@ -41,14 +44,17 @@ function LoginForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          // required
         />
-      </label>
+        </label>
+        </div>
+        <div id='buttons-form'>
       <button className="submit-bttn" type="submit">Log In</button>
       <button onClick={e => {
         setCredential("demo@user.io");
         setPassword("password");
       }} className="submit-bttn" type="submit">Demo User</button>
+      </div>
     </form>
   );
 }

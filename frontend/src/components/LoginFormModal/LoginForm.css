@@ -1,14 +1,16 @@
 /* fix this styling */
 form {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 300px;
+    /* height: 350px; */
     padding: 20px;
+
 }
 
 #modal-content {
     border-radius: 15px;
+    overflow: auto;
 }
 
 .submit-bttn {
@@ -23,4 +25,12 @@ form {
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
+}
+
+.form-form button {
+    width: 150px;
+}
+
+#buttons-form button {
+    margin-left: 10px;
 }

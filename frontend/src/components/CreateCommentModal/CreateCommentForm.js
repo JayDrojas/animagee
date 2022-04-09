@@ -35,11 +35,12 @@ function CreateCommentForm ({ hideModal }) {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Comment on Image</h3>
-      <ul>
-        {errors?.map((error, idx) =>
-          <li key={idx}>{error}</li>
-        )}
-      </ul>
+      {errors.length > 0 && (
+        <ul className="errors-ul">
+        <p>Invalid Entries</p>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+    )}
       <label id='label-textarea-comment'>
         Comment:
         <textarea

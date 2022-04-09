@@ -18,15 +18,9 @@ function DeleteCommentForm ({ hideModal, comment }) {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Are you sure you want to delete this comment?</h3>
-      <label>
-        Comment:
-        <input
-          type="text"
-          value={content}
-          onChange={e => setContent(e.target.value)}
-        />
-      </label>
+      <div id='buttons-form-update'>
       <button className="submit-bttn delete" type="submit">Confirm Delete</button>
+      </div>
     </form>
   )
 }

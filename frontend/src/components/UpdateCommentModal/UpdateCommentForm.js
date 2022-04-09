@@ -23,23 +23,28 @@ function UpdateCommentForm ({ hideModal, comment }) {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-form" onSubmit={handleSubmit}>
       <h3>Update Comment</h3>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
+      {errors.length > 0 && (
+        <ul className="errors-ul">
+        <p>Invalid Entries</p>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+    )}
+    <div className="form-div">
+      <label id='label-textarea-comment'>
         Comment:
-        <input
+        <textarea
           type="text"
           value={content}
           onChange={e => setContent(e.target.value)}
         />
       </label>
+      </div>
+      <div id='buttons-form-update'>
       <button className="submit-bttn" type="submit">Update Comment</button>
-    </form>
+      </div>
+      </form>
   )
 }
 
