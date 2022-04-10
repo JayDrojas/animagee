@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/JayDrojas/authenticate-me/issues"
   },
-  "homepage": "https://github.com/JayDrojas/authenticate-me#readme"
+  "homepage": "https://github.com/JayDrojas/authenticate-me#readme",
+  "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.18"
+  }
 }
