@@ -51,7 +51,8 @@
     text-align: center;
     align-content: center;
     width: 100%;
-    height: 1000px;
+    /* height: 1000px; */
+    min-height: 300px;
     max-height: 900px;
     overflow-y: auto;
     overflow-wrap: inherit;
