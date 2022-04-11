@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteImage } from '../../store/images';
-import { Modal } from '../../context/Modal';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { getOneImage, getAllImages } from '../../store/images';
+import { getAllImages } from '../../store/images';
 import UpdateImageModal from '../UpdateImageModal/index';
 import Comments from '../Comments';
 import './index.css';

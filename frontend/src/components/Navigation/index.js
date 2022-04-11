@@ -15,12 +15,12 @@ function Navigation({ isLoaded }) {
   if(sessionUser) {
     imageTitle = (
       <>
-      <NavLink id="animage-logo" exact to="/">Welcome {sessionUser.username}</NavLink>
+      <NavLink id="animage-logo" exact to="/home">Welcome {sessionUser.username}</NavLink>
       </>
     )
   } else {
     imageTitle = (<>
-    <NavLink id="animage-logo" exact to="/">Animagee</NavLink>
+    <NavLink id="animage-logo" exact to="/home">Animagee</NavLink>
     </>)
   }
   if (sessionUser) {
