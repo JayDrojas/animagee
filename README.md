@@ -1,9 +1,8 @@
 # Animagee
 A inspired clone of Flickr.
 Animagee is a website where you can share your anime images. 
-
 # Index
-| [MVP Feature List](https://github.com/JayDrojas/animagee/wiki/Features) | [Database Schema](https://github.com/JayDrojas/animagee/wiki/Database-Schema) |
+| [Live link](https://animagee.herokuapp.com/) | [MVP Feature List](https://github.com/JayDrojas/animagee/wiki/Features) | [Database Schema](https://github.com/JayDrojas/animagee/wiki/Database-Schema) |
 
 # Technologies Used
 ---
