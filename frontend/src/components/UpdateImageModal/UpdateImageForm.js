@@ -12,12 +12,20 @@ function UpdateImageForm({ hideModal, image, user }) {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        if(content && imageUrl) {
+        const submitErrors = [];
+
+        let isValid = imageUrl.match(/(jpe?g|tiff|png|gif|bmp)/) === null;
+        // console.log(isValid)
+
+        if (isValid) submitErrors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".');
+        if (content.length <= 0) submitErrors.push('Content must be field in')
+
+        if(content && imageUrl && !isValid) {
             setErrors([]);
             await dispatch(editImage({ content, imageUrl, userId: user.id, id: image.id }))
             hideModal();
         } else {
-            return setErrors(['Make sure content and image url is filled in.'])
+            return setErrors(submitErrors);
         }
     };
 

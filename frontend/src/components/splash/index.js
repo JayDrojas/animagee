@@ -18,7 +18,7 @@ function Splash() {
           <a href="https://github.com/JayDrojas/animagee">Github Repo</a>
         </div>
         <div>
-          <Link to="" >LinkedIn</Link>
+          <a href="https://www.linkedin.com/in/damian-rojas-076a571b8/" >LinkedIn</a>
         </div>
         <div>
           <p>2022 - Juan Damian Rojas</p>
