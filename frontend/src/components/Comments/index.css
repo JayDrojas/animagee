@@ -47,6 +47,15 @@
     justify-content: flex-end;
 }
 
+#comment-content p {
+    word-break: break-all;
+    white-space: normal;
+}
+#comment-content i {
+    word-break: normal;
+    white-space: normal;
+}
+
 .comments-outer-div {
     text-align: center;
     align-content: center;

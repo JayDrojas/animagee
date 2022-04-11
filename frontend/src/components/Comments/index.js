@@ -50,9 +50,9 @@ const Comments = () => {
               <p>{comment?.User?.username}</p>
             </div>
             <div id='comment-content'>
-              <h3>
+              <p>
                 {comment?.content}
-              </h3>
+              </p>
             </div>
           </div>
           <div className='all-modals-bttns'>
