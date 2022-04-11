@@ -104,41 +104,41 @@ module.exports = {
         username: 'FakeUserLight',
         hashedPassword: bcrypt.hashSync('password')
       },
-      // {
-      //   email: 'Itachi@user.io',
-      //   username: 'FakeUserItachi',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'Luffy@user.io',
-      //   username: 'FakeUserLuffy',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'GodUssop@user.io',
-      //   username: 'FakeUserGodUssop',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'Saitama@user.io',
-      //   username: 'FakeUserSaitama',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'Zoro@user.io',
-      //   username: 'FakeUserZoro',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'Mikasa@user.io',
-      //   username: 'FakeUserMikasa',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // },
-      // {
-      //   email: 'Eren@user.io',
-      //   username: 'FakeUserEren',
-      //   hashedPassword: bcrypt.hashSync('password')
-      // }
+      {
+        email: 'Itachi@user.io',
+        username: 'FakeUserItachi',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'Luffy@user.io',
+        username: 'FakeUserLuffy',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'GodUssop@user.io',
+        username: 'FakeUserGodUssop',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'Saitama@user.io',
+        username: 'FakeUserSaitama',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'Zoro@user.io',
+        username: 'FakeUserZoro',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'Mikasa@user.io',
+        username: 'FakeUserMikasa',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'Eren@user.io',
+        username: 'FakeUserEren',
+        hashedPassword: bcrypt.hashSync('password')
+      }
     ], {});
   },
 
