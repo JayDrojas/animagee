@@ -97,14 +97,12 @@ const commentReducer = (state = {}, action) => {
       }
 
     case UPDATE_COMMENT:
-      console.log(action)
       return {
         ...state,
         [action.comment.comment.id]: action.comment.comment
       }
 
     case REMOVE_COMMENT:
-      console.log(action, "------")
       const newState = {...state}
       delete newState[action.payload];
       return newState

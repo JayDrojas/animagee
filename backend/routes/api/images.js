@@ -30,7 +30,6 @@ router.get(
   '/',
   asyncHandler(async (req, res) => {
     const images = await Image.findAll();
-    console.log(images)
     return res.json({ images });
   })
 );
@@ -90,7 +89,6 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
 router.post('/', requireAuth, validateImage, asyncHandler(async (req, res) => {
   let { content, imageUrl, userId, albumId } = req.body;
   if (!albumId) albumId = null;
-  console.log({ userId })
   const image = await Image.create({ content, imageUrl, userId, albumId });
 
   return res.json({

@@ -6,7 +6,6 @@ function DeleteCommentForm ({ hideModal, comment }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [content, setContent] = useState(comment.content);
-  console.log(comment, "-----")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
