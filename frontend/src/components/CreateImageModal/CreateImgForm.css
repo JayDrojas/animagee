@@ -5,3 +5,12 @@ form {
     height: 500px;
     padding: 20px;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+#image-pic {
+    max-width: 400px;
+    height: auto;
+}

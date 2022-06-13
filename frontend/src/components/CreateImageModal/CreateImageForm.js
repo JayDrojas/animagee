@@ -7,7 +7,7 @@ function CreateImageForm({ hideModal }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [content, setContent] = useState("");
-    const [imageUrl, setImgUrl] = useState("");
+    const [image, setImage] = useState("");
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
@@ -15,20 +15,25 @@ function CreateImageForm({ hideModal }) {
 
         const submitErrors = [];
 
-        let isValid = imageUrl.match(/(jpe?g|tiff|png|gif|bmp)/) === null;
-        // console.log(isValid)
-
-        if (isValid) submitErrors.push('Image link must be an image url with a "jpg, jpe, tiff, png, gif, bmp".');
         if (content.length <= 0) submitErrors.push('Content must be field in')
 
-        if (content && imageUrl && !isValid) {
+        if (content && image) {
             setErrors([]);
-            await dispatch(createOneImage({ content, imageUrl, userId: sessionUser.id }))
+            const response = await dispatch(createOneImage({ content, image, userId: sessionUser.id }))
+
+            if(response.errors) {
+                return setErrors([response.errors])
+            }
             hideModal();
         } else {
             return setErrors(submitErrors);
         }
     };
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -49,14 +54,9 @@ function CreateImageForm({ hideModal }) {
                 // required
                 />
             </label>
-            <label>
-                Image Url
-                <input
-                    type="text"
-                    value={imageUrl}
-                    onChange={(e) => setImgUrl(e.target.value)}
-                // required
-                />
+            <label className="submit-bttn">
+                Choose File
+                <input type="file" onChange={updateFile} />
             </label>
             </div>
             <button className="submit-bttn" type="submit">Post Image</button>

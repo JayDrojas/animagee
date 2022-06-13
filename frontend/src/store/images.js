@@ -46,17 +46,23 @@ export const getOneImage = (id) => async dispatch => {
     dispatch(getOne(image));
 }
 
-export const editImage = (payload) => async (dispatch) => {
-    const response = await csrfFetch(`/api/images/${payload.id}`, {
+export const editImage = ({ formData, id }) => async (dispatch) => {
+    const response = await csrfFetch(`/api/images/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        body: formData
     })
-    if (response.ok) {
-        const data = await response.json()
-        const image = data.image
-        dispatch(updateImage(image))
+    const data = await response.json()
+
+    if (data.errors) {
+        return data
     }
+
+    dispatch(updateImage(data.image))
+    return data.image
+
 }
 export const deleteImage = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/images/${id}`, {
@@ -75,15 +81,27 @@ export const getAllImages = () => async (dispatch) => {
     }
 }
 
-export const createOneImage = (image) => async (dispatch) => {
-    const { content, imageUrl, userId, albumId } = image;
+export const createOneImage = (ImageFront) => async (dispatch) => {
+    const { content, image, userId, albumId } = ImageFront;
+    const formData = new FormData();
+    formData.append("content", content);
+    formData.append("userId", userId);
+    formData.append("albumId", albumId);
+    if (image) formData.append("image", image)
+
     const response = await csrfFetch('/api/images', {
         method: "POST",
-        body: JSON.stringify({
-            content, imageUrl, userId, albumId
-        }),
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        body: formData,
     });
     const data = await response.json();
+
+    if (data.errors) {
+        return data
+    }
+
     dispatch(setImage(data.image));
     return response;
 }

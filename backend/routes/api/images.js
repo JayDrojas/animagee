@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
+const { singleMulterUpload, singlePublicFileUpload, allowed_file } = require('../../awsS3')
 
 const { handleValidationErrors } = require('../../utils/validation');
 const db = require('../../db/models');
@@ -77,19 +78,41 @@ router.post('/:id(\\d+)/comments', asyncHandler(async function (req, res) {
 )
 
 
-router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)', singleMulterUpload("image"), asyncHandler(async (req, res) => {
+  let { content, userId, albumId } = req.body;
   const image = await Image.findByPk(req.params.id);
-  image.content = req.body.content || image.content;
-  image.imageUrl = req.body.imageUrl || image.imageUrl;
+
+  if(!req.file) {
+    if (image) {
+      image.content = content;
+      await image.save();
+      return res.json({ image })
+    }
+  }
+
+  if (!allowed_file(req.file.originalname)) {
+    return res.json({ "errors": "file type not permitted" })
+  }
+
+  const imageUrlAws = await singlePublicFileUpload(req.file);
+
+  image.content = content || image.content;
+  image.imageUrl = imageUrlAws || image.imageUrl;
 
   await image.save();
-  res.json({ image })
+  return res.json({ image })
 }))
 
-router.post('/', requireAuth, validateImage, asyncHandler(async (req, res) => {
-  let { content, imageUrl, userId, albumId } = req.body;
-  if (!albumId) albumId = null;
-  const image = await Image.create({ content, imageUrl, userId, albumId });
+router.post('/', requireAuth, singleMulterUpload("image"), asyncHandler(async (req, res) => {
+  let { content, userId, albumId } = req.body;
+
+  if (!allowed_file(req.file.originalname)) {
+    return res.json({ "errors": "file type not permitted" })
+  }
+
+  const imageUrlAws = await singlePublicFileUpload(req.file);
+
+  const image = await Image.create({ content, imageUrl: imageUrlAws, userId, albumId: null });
 
   return res.json({
     image
