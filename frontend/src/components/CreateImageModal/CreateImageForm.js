@@ -12,11 +12,10 @@ function CreateImageForm({ hideModal }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const submitErrors = [];
 
         if (content.length <= 0) submitErrors.push('Content must be field in')
-
+        if(!image) submitErrors.push('Must include Image.')
         if (content && image) {
             setErrors([]);
             const response = await dispatch(createOneImage({ content, image, userId: sessionUser.id }))

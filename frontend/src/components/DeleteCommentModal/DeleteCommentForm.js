@@ -4,8 +4,6 @@ import { deleteComment } from '../../store/comments'
 
 function DeleteCommentForm ({ hideModal, comment }) {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [content, setContent] = useState(comment.content);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

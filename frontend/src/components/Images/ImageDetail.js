@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteImage } from '../../store/images';
 import { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getAllImages } from '../../store/images';
 import UpdateImageModal from '../UpdateImageModal/index';
 import Comments from '../Comments';
 import './index.css';
+import ConfirmDeleteImageModal from '../ConfirmDeleteModal';
 
 const ImageDetail = () => {
-  const history = useHistory();
   const { imageId } = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -19,10 +18,10 @@ const ImageDetail = () => {
     dispatch(getAllImages());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    dispatch(deleteImage(id));
-    history.push('/')
-  };
+  // const handleDelete = (id) => {
+  //   dispatch(deleteImage(id));
+  //   history.push('/')
+  // };
 
   return (
     <>
@@ -37,9 +36,10 @@ const ImageDetail = () => {
               </div>
 
               <div className='bttn-in-row'>
-                <button onClick={() => handleDelete(image?.id)} className='submit-bttn delete'>
+                {/* <button onClick={() => handleDelete(image?.id)} className='submit-bttn delete'>
                   Delete
-                </ button>
+                </ button> */}
+                <ConfirmDeleteImageModal image={image} />
               </div>
             </div>
           }
